@@ -1,0 +1,5 @@
+Flask==2.3.*
+htmlmin==0.1.12
+beautifulsoup4==4.12.*
+pywebview==4.*
+rjsmin

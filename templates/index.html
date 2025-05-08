@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>HTML Obfuscator</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: {
+            'gradient': 'gradient 8s ease infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            gradient: {
+              '0%, 100%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #1e40af);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .card-shadow {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 
+                  0 1px 5px rgba(0, 0, 0, 0.1),
+                  0 0 80px rgba(79, 70, 229, 0.15);
+    }
+    .glow-border {
+      box-shadow: 0 0 15px rgba(99, 102, 241, 0.6);
+    }
+    .file-drop-zone:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+    
+    input[type="file"]::file-selector-button {
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    input[type="file"]::file-selector-button:hover {
+      background: linear-gradient(135deg, #4338ca, #4f46e5);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col">
+  
+  <header class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 opacity-90 animate-gradient"></div>
+    <div class="max-w-4xl mx-auto px-6 py-8 relative z-10">
+      <div class="flex items-center gap-3">
+        <div class="bg-white bg-opacity-20 rounded-lg p-2">
+          <i class="fas fa-shield-alt text-white text-2xl"></i>
+        </div>
+        <div>
+          <h1 class="text-3xl font-bold text-white">HTML Obfuscator</h1>
+          <p class="text-indigo-100 mt-1">
+            Protect your HTML code from prying eyes
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="absolute -bottom-6 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-indigo-900/20"></div>
+  </header>
+
+  <main class="flex-grow flex items-center justify-center px-4 py-12 relative">
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+      <div class="absolute top-20 left-10 w-32 h-32 bg-purple-600 rounded-full opacity-10 blur-3xl animate-float"></div>
+      <div class="absolute bottom-20 right-10 w-40 h-40 bg-blue-600 rounded-full opacity-10 blur-3xl animate-float" style="animation-delay: -2s"></div>
+      <div class="absolute top-1/2 left-1/3 w-24 h-24 bg-indigo-600 rounded-full opacity-10 blur-3xl animate-float" style="animation-delay: -4s"></div>
+    </div>
+    
+    <div class="max-w-xl w-full glass card-shadow rounded-2xl overflow-hidden">
+      <div class="bg-gradient-to-r from-indigo-600 to-blue-600 px-6 py-4">
+        <h2 class="text-xl font-semibold text-white flex items-center gap-2">
+          <i class="fas fa-code"></i> Obfuscate Your HTML
+        </h2>
+      </div>
+      
+      <div class="p-8 bg-gradient-to-b from-gray-900/80 to-black/80 text-gray-100">
+        <div class="mb-8">
+          <label class="block mb-2 text-lg font-medium text-indigo-200">
+            <i class="fas fa-file-code mr-2"></i>Select HTML File
+          </label>
+          
+          <div class="file-drop-zone border-2 border-dashed border-indigo-500/30 rounded-xl p-6 text-center transition-all duration-300">
+            <input id="fileInput" type="file" accept=".html,.htm,text/html"
+                  class="block w-full text-indigo-200 file:mr-4 file:py-3 file:px-6
+                        file:rounded-lg file:border-0 hover:file:bg-indigo-500
+                        file:text-white file:font-medium
+                        file:bg-indigo-600/80"/>
+            <p class="mt-3 text-indigo-300/80 text-sm">Upload your HTML file to begin transformation</p>
+          </div>
+        </div>
+        
+        <div id="msg" class="hidden mb-6 p-4 rounded-lg border glow-border"></div>
+      
+        <button id="goBtn"
+                class="w-full relative overflow-hidden group bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500
+                      text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-1">
+          <span class="relative z-10 flex items-center justify-center gap-2">
+            <i class="fas fa-magic"></i>
+            <span>Obfuscate & Download</span>
+          </span>
+          <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-600/40 to-blue-600/40 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"></div>
+        </button>
+        
+        <div class="mt-8 grid grid-cols-2 gap-4 text-center text-sm">
+          <div class="p-3 rounded-lg bg-white/5 backdrop-blur">
+            <i class="fas fa-bolt text-yellow-400 mb-1"></i>
+            <p>High-Speed Processing</p>
+          </div>
+          <div class="p-3 rounded-lg bg-white/5 backdrop-blur">
+            <i class="fas fa-lock text-green-400 mb-1"></i>
+            <p>Enhanced Security</p>
+          </div>
+          <div class="p-3 rounded-lg bg-white/5 backdrop-blur">
+            <i class="fas fa-cloud-download-alt text-blue-400 mb-1"></i>
+            <p>Instant Download</p>
+          </div>
+          <div class="p-3 rounded-lg bg-white/5 backdrop-blur">
+            <i class="fas fa-sync text-purple-400 mb-1"></i>
+            <p>Full Compatibility</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="text-center text-indigo-200/70 py-6 bg-black/30 backdrop-blur-sm">
+    <div class="max-w-xl mx-auto px-4">
+      <p>&copy; <span id="year"></span> HTML Obfuscator</p>
+      <p class="text-xs mt-1">Protect your code with confidence</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+  const $ = (sel) => document.querySelector(sel);
+  const msg = $("#msg");
+
+  function flash(text, type = "info") {
+    msg.textContent = text;
+    msg.className =
+      "mb-6 p-4 rounded-lg border " +
+      (type === "error"
+        ? "bg-red-900/50 text-red-200 border-red-500 glow-border"
+        : type === "success"
+        ? "bg-green-900/50 text-green-200 border-green-500 glow-border"
+        : "bg-indigo-900/50 text-indigo-200 border-indigo-500 glow-border");
+    msg.hidden = false;
+  }
+
+  $("#goBtn").addEventListener("click", async () => {
+    const file = $("#fileInput").files[0];
+    if (!file) {
+      flash("Please choose an HTML file first ", "error");
+      return;
+    }
+    
+    const formData = new FormData();
+    formData.append("file", file);
+    
+    flash("Working... this should be quick");
+    
+    try {
+      const res = await fetch("/api/obfuscate", { method: "POST", body: formData });
+      if (!res.ok) throw new Error(await res.text());
+      
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      
+      const cd = res.headers.get("Content-Disposition") || "";
+      const m = /filename\*=UTF-8''(.+)|filename="?([^\";]+)"?/.exec(cd);
+      a.download = decodeURIComponent(m?.[1] || m?.[2] || "output.html");
+      
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      
+      flash("File downloaded ", "success");
+    } catch (err) {
+      console.error(err);
+      flash("Error: " + err.message, "error");
+    }
+  });
+  </script>
+</body>
+</html>
