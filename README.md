@@ -68,7 +68,7 @@ file=<your HTML file>
 
 ## Releases
 
-Pre‑built binaries are available on the [**Releases**](Releases) page for Windows:
+Pre‑built binaries are available on the [**Releases**](releases/tag/v1.0) page for Windows:
 
 | File                        | Notes                                                                                                                                                                                                                                                           |
 | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
