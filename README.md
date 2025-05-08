@@ -72,13 +72,13 @@ Pre‑built binaries are available on the [**Releases**](https://github.com/sury
 
 | File                        | Notes                                                                                                                                                                                                                                                           |
 | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `html‑obfuscator‑win64.exe` | Portable single‑file build. **Heads‑up:** Unsigned executables sometimes trigger SmartScreen or antivirus false positives. If this happens you can safely allow / whitelist the file or build your own binary with `pyinstaller --onefile desktop_launcher.py`. |
+| `html‑obfuscator.exe` | Portable single‑file build. **Heads‑up:** Unsigned executables sometimes trigger SmartScreen or antivirus false positives. If this happens you can safely allow / whitelist the file or build your own binary with `pyinstaller --onefile desktop_launcher.py`. |
 |                             |                                                                                                                                                                                                                                                                 |
 
 ---
 
-## 📜 License
+## License
 
-MIT – see [LICENSE](LICENCE).
+MIT – see [LICENSE](https://github.com/suryanarayanrenjith/html-obfuscator/blob/main/LICENSE).
 
 > **Security note**: Obfuscation ≠ encryption. This tool only deters casual copy‑pasting; determined users can always decode the payload.
